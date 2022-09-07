@@ -1,13 +1,13 @@
-import { UsernameForm } from "../components/UsernameForm";
-import useUserInfo from "./hooks/useUserInfo";
+import UsernameForm from "../components/UsernameForm";
+import useUserInfo from "../hooks/useUserInfo";
 
 export default function Home() {
   const { userInfo, status: userInfoStatus } = useUserInfo;
 
   if (userInfoStatus === "loading") {
-    return <div>Loading user info...</div>;
+    return "Loading user info...";
   }
-  if (!userInfo?.username) {
+  if (userInfo && !userInfo?.username) {
     return <UsernameForm />;
   }
 

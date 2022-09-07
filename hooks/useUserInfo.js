@@ -3,22 +3,29 @@ import { useEffect, useState } from "react";
 
 export default function useUserInfo() {
   const { data: session, status: sessionStatus } = useSession();
-  const [userInfo, setUserInfo] = useState();
+  const [userInfo, setUserInfo] = useState(null);
   const [status, setStatus] = useState("loading");
 
   function getUserInfo() {
     if (sessionStatus === "loading") {
       return;
     }
-    fetch("api/users?id=" + session.user.id).then((response) => {
+    if (sessionStatus === "unauthenticated") {
+      setStatus("unauthenticated");
+      return;
+    }
+    console.log("fetch");
+    fetch("/api/users?id=" + session.user.id).then((response) => {
       response.json().then((json) => {
         setUserInfo(json.user);
-        setStatus("done");
+        setStatus("authenticated");
       });
     });
   }
+
   useEffect(() => {
     getUserInfo();
   }, [sessionStatus]);
-  return { userInfo, status };
+
+  return { userInfo, setUserInfo, status };
 }

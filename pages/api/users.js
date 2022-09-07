@@ -5,8 +5,7 @@ import { authOptions } from "./auth/[...nextauth]";
 
 export default async function handle(req, res) {
   await initMongoose();
-  unstable_getServerSession(req, res, authOptions);
-
+  const session = await unstable_getServerSession(req, res, authOptions);
   if (req.method === "PUT") {
     const { username } = req.body;
     await User.findByIdAndUpdate(session.user.id, { username });

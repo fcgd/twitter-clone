@@ -1,10 +1,12 @@
+import { useRouter } from "next/router";
+import useUserInfo from "../hooks/useUserInfo";
 import { useEffect, useState } from "react";
-import useUserInfo from "../pages/hooks/useUserInfo";
 
-export const UsernameForm = () => {
+export default function UsernameForm() {
   const { userInfo, status } = useUserInfo();
   const [username, setUsername] = useState("");
-  // console.log(userInfo);
+  const router = useRouter();
+
   useEffect(() => {
     if (status === "loading") {
       return;
@@ -15,15 +17,14 @@ export const UsernameForm = () => {
     }
   }, [status]);
 
-  function handleFormSubmit(e) {
+  async function handleFormSubmit(e) {
     e.preventDefault();
-    fetch("api/users", {
+    await fetch("/api/users", {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "content-type": "application/json" },
       body: JSON.stringify({ username }),
     });
+    router.reload();
   }
 
   if (status === "loading") {
@@ -47,4 +48,4 @@ export const UsernameForm = () => {
       </form>
     </div>
   );
-};
+}

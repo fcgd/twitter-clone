@@ -1,5 +1,5 @@
 import { getProviders, signIn, useSession } from "next-auth/react";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 export default function LoginPage({ providers }) {
   const { data, status } = useSession();
@@ -13,7 +13,7 @@ export default function LoginPage({ providers }) {
   return (
     <div className="flex items-center justify-center h-screen">
       {Object.values(providers).map((provider) => (
-        <div>
+        <div key={provider.id}>
           <button
             className="bg-twitterWhite pl-3 pr-4 py-2 text-black rounded-full flex items-center gap-2"
             onClick={async () => {
