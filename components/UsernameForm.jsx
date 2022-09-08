@@ -37,10 +37,12 @@ export default function UsernameForm() {
         <h1 className="text-xl mb-2">Pick a username</h1>
         <input
           type="text"
+          className="block mb-1 bg-twitterBorder px-3 py-1 rounded-full"
           placeholder={"username"}
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="block mb-1 bg-twitterBorder px-3 py-1 rounded-full"
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
         />
         <button className="block bg-twitterBlue w-full rounded-full py-1">
           Continue
