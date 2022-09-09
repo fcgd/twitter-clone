@@ -11,10 +11,12 @@ export default function Home() {
   const { data: session } = useSession();
   const { userInfo, setUserInfo, status: userInfoStatus } = useUserInfo();
   const [posts, setPosts] = useState([]);
+  const [idsLikedByMe, setIdsLikedByMe] = useState([]);
 
   function fetchHomePosts() {
     axios.get("/api/posts").then((response) => {
-      setPosts(response.data);
+      setPosts(response.data.posts);
+      setIdsLikedByMe(response.data.idsLikedByMe);
     });
   }
 
@@ -37,7 +39,10 @@ export default function Home() {
         {posts.length > 0 &&
           posts.map((post) => (
             <div className="border-t border-twitterBorder p-5" key={post.id}>
-              <PostContent {...post} />
+              <PostContent
+                {...post}
+                idsLikedByMe={idsLikedByMe.includes(post._id)}
+              />
             </div>
           ))}
       </div>

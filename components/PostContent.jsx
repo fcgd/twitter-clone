@@ -1,8 +1,17 @@
 import Link from "next/link";
 import ReactTimeAgo from "react-time-ago";
 import { Avatar } from "./Avatar";
+import { PostButtons } from "./PostButtons";
 
-export const PostContent = ({ text, author, createdAt, _id, big = false }) => {
+export const PostContent = ({
+  text,
+  author,
+  createdAt,
+  likesCount,
+  likedByMe,
+  _id,
+  big = false,
+}) => {
   return (
     <div>
       <div className="flex">
@@ -21,6 +30,11 @@ export const PostContent = ({ text, author, createdAt, _id, big = false }) => {
           {!big && (
             <div>
               <Link href={`/${author.username}/status/${_id}`}>{text}</Link>
+              <PostButtons
+                id={_id}
+                likesCount={likesCount}
+                likedByMe={likedByMe}
+              />
             </div>
           )}
         </div>
@@ -37,6 +51,7 @@ export const PostContent = ({ text, author, createdAt, _id, big = false }) => {
               .reverse()
               .join(" ")}
           </div>
+          <PostButtons id={_id} likesCount={likesCount} likedByMe={likedByMe} />
         </div>
       )}
     </div>
