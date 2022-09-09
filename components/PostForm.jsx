@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import useUserInfo from "../hooks/useUserInfo";
+import { Avatar } from "./Avatar";
 
 export const PostForm = ({ onPost }) => {
   const { userInfo, status } = useUserInfo();
@@ -23,13 +24,7 @@ export const PostForm = ({ onPost }) => {
     <form className="mx-5" onSubmit={handlePostSubmit}>
       <div className="flex">
         <div>
-          <div className="rounded-full overflow-hidden w-12">
-            <img
-              src={userInfo?.image}
-              alt="avatar"
-              referrerpolicy="no-referrer"
-            />
-          </div>
+          <Avatar src={userInfo?.image} />
         </div>
         <div className="grow pl-4">
           <textarea

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { PostContent } from "../components/PostContent";
 import { PostForm } from "../components/PostForm";
 import UsernameForm from "../components/UsernameForm";
 import useUserInfo from "../hooks/useUserInfo";
@@ -35,7 +36,7 @@ export default function Home() {
         {posts.length > 0 &&
           posts.map((post) => (
             <div className="border-t border-twitterBorder p-5" key={post.id}>
-              {post.text}
+              <PostContent {...post} />
             </div>
           ))}
       </div>
