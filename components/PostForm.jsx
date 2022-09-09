@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import useUserInfo from "../hooks/useUserInfo";
 
-export const PostForm = () => {
+export const PostForm = ({ onPost }) => {
   const { userInfo, status } = useUserInfo();
   const [text, setText] = useState("");
 
@@ -13,6 +13,10 @@ export const PostForm = () => {
   const handlePostSubmit = async (e) => {
     e.preventDefault();
     await axios.post("/api/posts", { text });
+    setText("");
+    if (onPost) {
+      onPost();
+    }
   };
 
   return (
@@ -34,7 +38,7 @@ export const PostForm = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
           ></textarea>
-          <div className="text-right border-t border-twitterBorder pt-2">
+          <div className="text-right border-t border-twitterBorder py-2">
             <button className="bg-twitterBlue text-white px-5 py-1 rounded-full">
               Tweet
             </button>
