@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { Layout } from "../components/Layout";
 import { PostContent } from "../components/PostContent";
 import { PostForm } from "../components/PostForm";
 import UsernameForm from "../components/UsernameForm";
@@ -29,7 +30,7 @@ export default function Home() {
   }
 
   return (
-    <div className="max-w-lg mx-auto border-l border-r border-twitterBorder min-h-screen">
+    <Layout>
       <h1 className="text-lg font-bold p-4">Home</h1>
       <PostForm onPost={fetchHomePosts} />
       <div>
@@ -40,6 +41,6 @@ export default function Home() {
             </div>
           ))}
       </div>
-    </div>
+    </Layout>
   );
 }
