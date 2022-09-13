@@ -41,7 +41,9 @@ export const PostContent = ({
       </div>
       {big && (
         <div className="mt-2">
-          <Link href={`/${author.username}/status/${_id}`}>{text}</Link>
+          <Link href={`/${author.username}/status/${_id}`}>
+            <div className="w-full cursor-pointer">{text}</div>
+          </Link>
           <div className="text-twitterLightGray text-sm">
             {new Date(createdAt)
               .toISOString()
