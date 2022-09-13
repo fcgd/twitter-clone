@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Layout } from "../components/Layout";
 import { PostContent } from "../components/PostContent";
@@ -12,12 +13,18 @@ export default function Home() {
   const { userInfo, setUserInfo, status: userInfoStatus } = useUserInfo();
   const [posts, setPosts] = useState([]);
   const [idsLikedByMe, setIdsLikedByMe] = useState([]);
+  const router = useRouter();
 
   function fetchHomePosts() {
     axios.get("/api/posts").then((response) => {
       setPosts(response.data.posts);
       setIdsLikedByMe(response.data.idsLikedByMe);
     });
+  }
+
+  async function logout() {
+    setUserInfo(null);
+    await signOut();
   }
 
   useEffect(() => {
@@ -29,6 +36,11 @@ export default function Home() {
   }
   if (userInfo && !userInfo?.username) {
     return <UsernameForm />;
+  }
+
+  if (!userInfo) {
+    router.push("/login");
+    return "no user info";
   }
 
   return (
@@ -46,6 +58,16 @@ export default function Home() {
             </div>
           ))}
       </div>
+      {userInfo && (
+        <div className="p-5 text-center border-t border-twitterBorder">
+          <button
+            onClick={logout}
+            className="bg-twitterWhite text-black px-5 py-2 rounded-full"
+          >
+            Logout
+          </button>
+        </div>
+      )}
     </Layout>
   );
 }
