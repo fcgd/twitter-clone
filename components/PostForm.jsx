@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 import useUserInfo from "../hooks/useUserInfo";
-import { Avatar } from "./Avatar";
+import Avatar from "./Avatar";
 
-export const PostForm = ({
+export default function PostForm({
   onPost,
   compact,
   parent,
   placeholder = "What's happening?",
-}) => {
+}) {
   const { userInfo, status } = useUserInfo();
   const [text, setText] = useState("");
 
@@ -35,7 +35,7 @@ export const PostForm = ({
           <textarea
             className={
               (compact ? "h-10 mt-1" : "h-24") +
-              " w-full p-2 bg-transparent text-twitterWhite"
+              " w-full p-2 bg-transparent text-twitterWhite resize-none"
             }
             placeholder={placeholder}
             value={text}
@@ -59,4 +59,4 @@ export const PostForm = ({
       </div>
     </form>
   );
-};
+}

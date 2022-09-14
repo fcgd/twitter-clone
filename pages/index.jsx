@@ -2,9 +2,9 @@ import axios from "axios";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Layout } from "../components/Layout";
-import { PostContent } from "../components/PostContent";
-import { PostForm } from "../components/PostForm";
+import Layout from "../components/Layout";
+import PostContent from "../components/PostContent";
+import PostForm from "../components/PostForm";
 import UsernameForm from "../components/UsernameForm";
 import useUserInfo from "../hooks/useUserInfo";
 
