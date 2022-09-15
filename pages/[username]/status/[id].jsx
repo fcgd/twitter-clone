@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Layout } from "../../../components/Layout";
-import { PostContent } from "../../../components/PostContent";
-import { PostForm } from "../../../components/PostForm";
-import { TopNavLink } from "../../../components/TopNavLink";
+import Layout from "../../../components/Layout";
+import PostContent from "../../../components/PostContent";
+import PostForm from "../../../components/PostForm";
+import TopNavLink from "../../../components/TopNavLink";
 import useUserInfo from "../../../hooks/useUserInfo";
 
 export default function PostPage() {

@@ -29,6 +29,13 @@ export default function PostContent({
       </div>
     );
   }
+  const date = new Date(createdAt)
+    .toISOString()
+    .replace("T", " ")
+    .slice(0, 16)
+    .split(" ")
+    .reverse()
+    .join(" ");
 
   return (
     <div>
@@ -57,7 +64,7 @@ export default function PostContent({
             </Link>
             {!big && (
               <span className="pl-1 text-twitterLightGray">
-                <ReactTimeAgo date={createdAt} timeStyle={"twitter"} />
+                <ReactTimeAgo date={date} timeStyle={"twitter"} />
               </span>
             )}
           </div>
@@ -89,15 +96,7 @@ export default function PostContent({
             </div>
           </Link>
           {createdAt && (
-            <div className="text-twitterLightGray text-sm">
-              {new Date(createdAt)
-                .toISOString()
-                .replace("T", " ")
-                .slice(0, 16)
-                .split(" ")
-                .reverse()
-                .join(" ")}
-            </div>
+            <div className="text-twitterLightGray text-sm">{date}</div>
           )}
           <PostButtons
             username={author?.username}
