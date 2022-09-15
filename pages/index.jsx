@@ -40,7 +40,7 @@ export default function Home() {
 
   if (!userInfo) {
     router.push("/login");
-    return "no user info";
+    return "No user info";
   }
 
   return (

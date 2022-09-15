@@ -47,13 +47,19 @@ export default function UserPage() {
             <TopNavLink title={profileInfo.name} />
           </div>
           <Cover
+            editable={true}
             src={profileInfo.cover}
             onChange={(src) => updateUserImage("cover", src)}
           />
           <div className="flex justify-between ">
             <div className="ml-5 relative">
-              <div className="absolute -top-12 border-4 rounded-full border-black">
-                <Avatar big src={profileInfo.image} />
+              <div className="absolute -top-12 border-4 rounded-full border-black overflow-hidden">
+                <Avatar
+                  big
+                  src={profileInfo.image}
+                  editable={true}
+                  onChange={(src) => updateUserImage("image", src)}
+                />
               </div>
             </div>
             <div className="p-2">
