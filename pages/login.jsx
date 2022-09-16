@@ -20,7 +20,12 @@ export default function LoginPage({ providers }) {
             }}
             className="bg-twitterWhite pl-3 pr-5 py-2 text-black rounded-full flex items-center"
           >
-            <img src="/google.png" alt="" className="h-8" />
+            <img
+              src="/google.png"
+              alt=""
+              className="h-8"
+              referrerPolicy="no-referrer"
+            />
             Sign in with {provider.name}
           </button>
         </div>

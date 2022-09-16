@@ -61,7 +61,14 @@ export default function EditableImage({
           </div>
         )}
         <div className={"flex items-center overflow-hidden " + className}>
-          {src && <img src={src} className="w-full" alt="" />}
+          {src && (
+            <img
+              src={src}
+              className="w-full"
+              alt=""
+              referrerPolicy="no-referrer"
+            />
+          )}
         </div>
       </div>
     </FileDrop>
