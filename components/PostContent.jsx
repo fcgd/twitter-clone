@@ -23,7 +23,7 @@ export default function PostContent({
         {images.length > 0 &&
           images.map((img) => (
             <div className="m-1" key={img}>
-              <img src={img} alt="" />
+              <img src={img} alt="" referrerPolicy="no-referrer" />
             </div>
           ))}
       </div>
@@ -64,7 +64,7 @@ export default function PostContent({
             </Link>
             {!big && (
               <span className="pl-1 text-twitterLightGray">
-                <ReactTimeAgo date={date} timeStyle={"twitter"} />
+                <ReactTimeAgo date={Date.parse(date)} timeStyle={"twitter"} />
               </span>
             )}
           </div>
