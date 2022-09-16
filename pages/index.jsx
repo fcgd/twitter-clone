@@ -34,11 +34,13 @@ export default function Home() {
   if (userInfoStatus === "loading") {
     return "Loading user info...";
   }
+
   if (userInfo && !userInfo?.username) {
     return <UsernameForm />;
   }
 
   if (!userInfo) {
+    console.log({ session });
     router.push("/login");
     return "No user info";
   }
@@ -50,7 +52,7 @@ export default function Home() {
       <div>
         {posts.length > 0 &&
           posts.map((post) => (
-            <div className="border-t border-twitterBorder p-5" key={post.id}>
+            <div className="border-t border-twitterBorder p-5" key={post._id}>
               <PostContent
                 {...post}
                 idsLikedByMe={idsLikedByMe.includes(post._id)}
