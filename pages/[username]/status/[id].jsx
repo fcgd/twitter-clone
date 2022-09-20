@@ -11,17 +11,17 @@ export default function PostPage() {
   const router = useRouter();
   const { id } = router.query;
   const [post, setPost] = useState();
-  const { userInfo } = useUserInfo();
   const [replies, setReplies] = useState([]);
   const [repliesLikedByMe, setRepliesLikedByMe] = useState([]);
+  const { userInfo } = useUserInfo();
 
   function fetchData() {
-    axios.get("/api/posts?id=" + id).then((res) => {
-      setPost(res.data.post);
+    axios.get("/api/posts?id=" + id).then((response) => {
+      setPost(response.data.post);
     });
-    axios.get("api/posts?parent=" + id).then((res) => {
-      setReplies(res.data.posts);
-      setRepliesLikedByMe(res.data.idsLikedByMe);
+    axios.get("/api/posts?parent=" + id).then((response) => {
+      setReplies(response.data.posts);
+      setRepliesLikedByMe(response.data.idsLikedByMe);
     });
   }
 
@@ -37,7 +37,20 @@ export default function PostPage() {
       {!!post?._id && (
         <div className="px-5 py-2">
           <TopNavLink />
-          <PostContent {...post} big />
+          {post.parent && (
+            <div className="pb-1">
+              <PostContent {...post.parent} />
+              <div className="ml-5 h-12 relative">
+                <div
+                  className="h-20 border-l-2 border-twitterBorder absolute -top-5"
+                  style={{ marginLeft: "2px" }}
+                ></div>
+              </div>
+            </div>
+          )}
+          <div>
+            <PostContent {...post} big />
+          </div>
         </div>
       )}
       {!!userInfo && (
@@ -46,7 +59,7 @@ export default function PostPage() {
             onPost={fetchData}
             parent={id}
             compact
-            placeholder="Tweet your reply"
+            placeholder={"Tweet your reply"}
           />
         </div>
       )}

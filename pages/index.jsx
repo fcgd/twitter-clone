@@ -48,14 +48,26 @@ export default function Home() {
   return (
     <Layout>
       <h1 className="text-lg font-bold p-4">Home</h1>
-      <PostForm onPost={fetchHomePosts} />
-      <div>
+      <PostForm
+        onPost={() => {
+          fetchHomePosts();
+        }}
+      />
+      <div className="">
         {posts.length > 0 &&
           posts.map((post) => (
             <div className="border-t border-twitterBorder p-5" key={post._id}>
+              {post.parent && (
+                <div>
+                  <PostContent {...post.parent} />
+                  <div className="relative h-8">
+                    <div className="border-l-2 border-twitterBorder h-10 absolute ml-6 -top-4"></div>
+                  </div>
+                </div>
+              )}
               <PostContent
                 {...post}
-                idsLikedByMe={idsLikedByMe.includes(post._id)}
+                likedByMe={idsLikedByMe.includes(post._id)}
               />
             </div>
           ))}
