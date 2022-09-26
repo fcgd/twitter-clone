@@ -32,7 +32,7 @@ export default function Home() {
   }, []);
 
   if (userInfoStatus === "loading") {
-    return "Loading user info...";
+    return;
   }
 
   if (userInfo && !userInfo?.username) {
@@ -42,7 +42,7 @@ export default function Home() {
   if (!userInfo) {
     console.log({ session });
     router.push("/login");
-    return "No user info";
+    return;
   }
 
   return (
