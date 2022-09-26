@@ -18,12 +18,12 @@ export default function LoginPage({ providers }) {
             onClick={async () => {
               await signIn(provider.id);
             }}
-            className="bg-twitterWhite pl-3 pr-5 py-2 text-black rounded-full flex items-center"
+            className="bg-twitterWhite pl-3 pr-4 py-2 text-black rounded-full flex items-center"
           >
             <img
               src="/google.png"
               alt=""
-              className="h-8"
+              className="h-8 mr-2"
               referrerPolicy="no-referrer"
             />
             Sign in with {provider.name}
