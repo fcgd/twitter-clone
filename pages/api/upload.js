@@ -2,7 +2,7 @@ import multiparty from "multiparty";
 import S3 from "aws-sdk/clients/s3";
 import fs from "fs";
 import { unstable_getServerSession } from "next-auth";
-import { initMongoose } from "../lib/mongoose";
+import { initMongoose } from "../../lib/mongoose";
 import { authOptions } from "./auth/[...nextauth]";
 import User from "../../models/User";
 

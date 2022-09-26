@@ -1,4 +1,4 @@
-import { initMongoose } from "../lib/mongoose";
+import { initMongoose } from "../../lib/mongoose";
 import { authOptions } from "./auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth";
 import User from "../../models/User";

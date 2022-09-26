@@ -1,7 +1,7 @@
 import { unstable_getServerSession } from "next-auth";
 import Follower from "../../models/Follower";
 import User from "../../models/User";
-import { initMongoose } from "../lib/mongoose";
+import { initMongoose } from "../../lib/mongoose";
 import { authOptions } from "./auth/[...nextauth]";
 
 export default async function handle(req, res) {
